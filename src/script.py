@@ -47,13 +47,12 @@ def lambda_handler(event, context):
     ts = create_thread_at_slack()
     response = get_event_list()
     for event in response["events"]:
-        event_info = str(event["event_id"]) + "\n"\
-            + "    " + "イベント名:" + event["title"] + "\n"\
-            + "    " + "概要:" + event["catch"] + "\n"\
-            + "    " + "開始日時:" + event["started_at"] + "\n"\
-            + "    " + "終了日時:" + event["ended_at"] + "\n"\
-            + "    " + "参加可能人数:" + str(event["limit"]) + "\n"\
-            + "    " + "参加人数:" + str(event["accepted"]) + "\n"\
-            + "    " + "URL:" + event["event_url"]
+        event_info = "イベントID:" + str(event["event_id"]) + "\n"\
+            + "イベントタイトル:" + event["title"] + "\n"\
+            + "キャッチ:" + event["catch"] + "\n"\
+            + "開始日時:" + event["started_at"] + "\n"\
+            + "終了日時:" + event["ended_at"] + "\n"\
+            + "参加可能人数:" + str(event["limit"]) + "\n"\
+            + "参加人数:" + str(event["accepted"]) + "\n"\
+            + "URL:" + event["event_url"]
         post_event_info_to_slack(ts, event_info)
-        
